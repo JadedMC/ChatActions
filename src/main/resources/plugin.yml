@@ -1,0 +1,4 @@
+name: ChatActions
+version: '${project.version}'
+main: net.jadedmc.chatactions.ChatActionsPlugin
+api-version: 1.20

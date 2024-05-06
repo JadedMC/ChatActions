@@ -24,6 +24,7 @@
  */
 package net.jadedmc.chatactions;
 
+import net.jadedmc.chatactions.utils.ChatUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,6 +36,9 @@ public final class ChatActionsPlugin extends JavaPlugin {
         // Plugin startup logic
         new Metrics(this, 21818);
         hookManager = new HookManager();
+
+        // Enables ChatUtils.
+        ChatUtils.enable(this);
     }
 
     public HookManager getHookManager() {

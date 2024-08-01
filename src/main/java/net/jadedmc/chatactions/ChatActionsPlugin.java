@@ -24,20 +24,26 @@
  */
 package net.jadedmc.chatactions;
 
+import net.jadedmc.chatactions.actions.ActionManager;
 import net.jadedmc.chatactions.utils.ChatUtils;
+import net.jadedmc.chatactions.utils.CommandUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ChatActionsPlugin extends JavaPlugin {
     private HookManager hookManager;
     private ConfigManager configManager;
+    private ActionManager actionManager;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        new CommandUtils(this);
+
         new Metrics(this, 21818);
         configManager = new ConfigManager(this);
         hookManager = new HookManager();
+        actionManager = new ActionManager(this);
 
         // Enables ChatUtils.
         ChatUtils.enable(this);

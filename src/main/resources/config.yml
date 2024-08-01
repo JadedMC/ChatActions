@@ -9,8 +9,16 @@
 
 actions:
   wave:
-    sender-text: ""
-    receiver-text: ""
     aliases: []
-    permission: ""
-    permission-message: ""
+    messages:
+      sender-message: "<gray>You wave to <gold>%target%<gray>. Hi!"
+      target-message: "<gold>%sender% <gray>waves to you. Hi!"
+      global-message: "&6%sender%&7 waves to &6%target%&7. Hi!"
+      no-target-message: ""
+
+      permission-message: "<red><bold>Error</bold> <dark_gray>» <red>You do not have access to that command!"
+      help-message: "<gold>/wave <dark_gray>- <white>Wave at a player"
+      usage-message: "<red><bold>Usage</bold> <dark_gray>» <red>/wave [player]"
+    required-permission: "ca.wave"
+    require-target: true
+    range: -1

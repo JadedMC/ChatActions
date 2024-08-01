@@ -25,28 +25,65 @@
 package net.jadedmc.chatactions.actions;
 
 import net.jadedmc.chatactions.ChatActionsPlugin;
+import net.jadedmc.chatactions.utils.CommandUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ * Manages the loading and existence of configured Actions.
+ */
 public class ActionManager {
     private final Collection<Action> loadedActions = new HashSet<>();
     private final ChatActionsPlugin plugin;
 
+    /**
+     * Creates the Action Manager.
+     * @param plugin Instance of the plugin.
+     */
     public ActionManager(@NotNull final ChatActionsPlugin plugin) {
         this.plugin = plugin;
+
+        loadActions();
     }
 
-    @NotNull
-    private Action loadAction(@NotNull final ConfigurationSection config) {
-        @NotNull final Action action = new Action(config);
+    /**
+     * Loads a given action from it's name and Configuration Section.
+     * @param actionName
+     * @param config
+     */
+    private void loadAction(@NotNull final String actionName, @NotNull final ConfigurationSection config) {
+        @NotNull final Action action = new Action(actionName, config);
         loadedActions.add(action);
-        return action;
     }
 
+    /**
+     * Loads all the actions from config.yml.
+     */
     private void loadActions() {
+        final ConfigurationSection actions = plugin.getConfigManager().getConfig().getConfigurationSection("actions");
 
+        // Make sure actions have been configured.
+        if(actions == null) {
+            return;
+        }
+
+        // Loop through all found actions.
+        for(final String actionName : actions.getKeys(false)) {
+            final ConfigurationSection actionConfig = actions.getConfigurationSection(actionName);
+
+            // Skip the action if it's misconfigured.
+            if(actionConfig == null) {
+                continue;
+            }
+
+            // Loads the action.
+            loadAction(actionName, actionConfig);
+        }
+
+        // Allow all the action commands to be shown in tab complete.
+        CommandUtils.syncCommands();
     }
 }

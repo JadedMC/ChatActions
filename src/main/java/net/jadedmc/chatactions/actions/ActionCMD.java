@@ -98,6 +98,12 @@ public class ActionCMD extends BukkitCommand {
                 return true;
             }
 
+            // Makes sure the target and sender aren't the same player.
+            if(target.equals(player)) {
+                ChatUtils.chat(player, "<red><bold>Error</bold> <dark_gray>» <red>You cannot send that to yourself!");
+                return true;
+            }
+
             // Sends the proper messages to the sender and target.
             ChatUtils.chat(player, this.action.getSenderMessage(player, target));
             ChatUtils.chat(target, this.action.getTargetMessage(player, target));

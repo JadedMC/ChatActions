@@ -35,7 +35,11 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>net.jadedmc.chatactions.shade</shadedPattern>
+                            <shadedPattern>net.jadedmc.chatactions.shaded.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.kyori</pattern>
+                            <shadedPattern>net.jadedmc.chatactions.shaded.adventure</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

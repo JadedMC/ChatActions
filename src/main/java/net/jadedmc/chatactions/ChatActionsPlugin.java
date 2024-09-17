@@ -25,6 +25,8 @@
 package net.jadedmc.chatactions;
 
 import net.jadedmc.chatactions.actions.ActionManager;
+import net.jadedmc.chatactions.settings.ConfigManager;
+import net.jadedmc.chatactions.settings.HookManager;
 import net.jadedmc.chatactions.utils.ChatUtils;
 import net.jadedmc.chatactions.utils.CommandUtils;
 import org.bstats.bukkit.Metrics;

@@ -49,6 +49,11 @@ public final class ChatActionsPlugin extends JavaPlugin {
         ChatUtils.enable(this);
     }
 
+    @Override
+    public void onDisable() {
+        ChatUtils.disable();
+    }
+
     public ConfigManager getConfigManager() {
         return configManager;
     }

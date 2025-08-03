@@ -44,7 +44,7 @@ public final class ChatActionsPlugin extends JavaPlugin {
 
         new Metrics(this, 21818);
         configManager = new ConfigManager(this);
-        hookManager = new HookManager();
+        hookManager = new HookManager(this);
         actionManager = new ActionManager(this);
 
         // Enables ChatUtils.

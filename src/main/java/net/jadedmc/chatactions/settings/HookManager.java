@@ -1,5 +1,5 @@
 /*
- * This file is part of CommandBlockerPro, licensed under the MIT License.
+ * This file is part of ChatActions, licensed under the MIT License.
  *
  *  Copyright (c) JadedMC
  *  Copyright (c) contributors
@@ -24,18 +24,28 @@
  */
 package net.jadedmc.chatactions.settings;
 
-import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Keeps track of other plugins installed on the server that we may want to interact with.
+ * Keeps track of other plugins installed on the server that we may want to interface with.
  */
 public class HookManager {
+    private final boolean hasPlaceholderAPI;
+
+    /**
+     * Creates the hook manager.
+     * @param plugin Instance of the plugin.
+     */
+    public HookManager(@NotNull final Plugin plugin) {
+        this.hasPlaceholderAPI = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
+    }
 
     /**
      * Get if the plugin should use PlaceholderAPI.
      * @return Whether the plugin should interface with PlaceholderAPI.
      */
     public boolean usePlaceholderAPI() {
-        return Bukkit.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
+        return this.hasPlaceholderAPI;
     }
 }
